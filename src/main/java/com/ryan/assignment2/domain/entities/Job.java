@@ -3,10 +3,7 @@ package com.ryan.assignment2.domain.entities;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 
@@ -29,4 +26,8 @@ public class Job {
 
     @Column(nullable=false)
     private LocalDate date;
+
+    @ManyToOne()
+    @EqualsAndHashCode.Exclude
+    private Member member;
 }

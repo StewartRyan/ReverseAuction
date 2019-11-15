@@ -33,7 +33,7 @@
                 <h1 th:text="#{login.header}"></h1>
                 <div th:if="${error}" th:switch="${error}">
                     <div th:case="'login_error'" class="alert alert-danger" >
-                        <strong th:text="#{login.form.error}"></strong> <span th:text="#{login.form.error.details}"></span>
+                        <strong th:text="#{form.error}"></strong> <span th:text="#{login.form.error.details}"></span>
                     </div>
                 </div>
                 <form method="post" action="/login">

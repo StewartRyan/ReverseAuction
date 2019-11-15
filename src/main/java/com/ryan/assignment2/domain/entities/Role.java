@@ -20,5 +20,6 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    @EqualsAndHashCode.Exclude private Set<Member> members;
+    @EqualsAndHashCode.Exclude
+    private Set<Member> members;
 }
