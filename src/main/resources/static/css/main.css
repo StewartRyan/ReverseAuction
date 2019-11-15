@@ -1,0 +1,16 @@
+body{
+    background-color: #f3f3f3;
+}
+
+.container {
+    margin-top: 40px !important;
+}
+
+.registration-btn {
+    border: 1px solid #007bff !important;
+    color: #007bff !important;
+}
+
+.center-block {
+    float: none !important;
+}
