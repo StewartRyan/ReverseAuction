@@ -1,8 +1,10 @@
 package com.ryan.assignment2;
 
+import com.ryan.assignment2.domain.entities.Bid;
 import com.ryan.assignment2.domain.entities.Job;
 import com.ryan.assignment2.domain.entities.Member;
 import com.ryan.assignment2.domain.entities.Role;
+import com.ryan.assignment2.services.IBidService;
 import com.ryan.assignment2.services.IJobService;
 import com.ryan.assignment2.services.IMemberService;
 import com.ryan.assignment2.services.IRoleService;
@@ -24,6 +26,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     IMemberService _memberService;
+
+    @Autowired
+    IBidService _bidService;
 
 
     @Override
@@ -67,5 +72,17 @@ public class DataLoader implements ApplicationRunner {
         job3.setState("expired");
 
         _jobService.save(job1, job2, job3);
+
+        Bid newBid = new Bid();
+        newBid.setJob(job3);
+        newBid.setAmount(45.67f);
+        newBid.setMember(newMember);
+
+        Bid newBid2 = new Bid();
+        newBid2.setJob(job3);
+        newBid2.setAmount(32.52f);
+        newBid2.setMember(newMember);
+
+        _bidService.save(newBid, newBid2);
     }
 }
