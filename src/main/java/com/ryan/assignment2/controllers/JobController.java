@@ -53,16 +53,11 @@ public class JobController {
             return "redirect:/login";
         }
 
-        model.addAttribute("current_member", member);
-
         // Validate user input
-        String errorMessage = checkJobValues(jobDetails);
-
-        // Add error message to model for front-end
-        model.addAttribute("error", errorMessage);
+        String returnMessage = checkJobValues(jobDetails);
 
         // Only if no error is present, add new job to DB
-        if ("".equals(errorMessage))
+        if ("".equals(returnMessage))
         {
             Job newJob = new Job();
             newJob.setName(jobDetails.get("name"));
@@ -71,9 +66,10 @@ public class JobController {
             newJob.setMember(_userService.getCurrentMember());
 
             _jobService.save(newJob);
+            returnMessage = "success";
         }
 
-        return "newJob";
+        return "redirect:/newJob?message=" + returnMessage;
     }
 
     private String checkJobValues(Map<String, String> job)
@@ -88,7 +84,7 @@ public class JobController {
     }
 
     @GetMapping("/newJob")
-    public String newJobPage(Model model)
+    public String newJobPage(Model model, @RequestParam Map<String, String> queryParameters)
     {
         MemberDetails member = _userService.getCurrentMemberDetails();
         if (member == null)
@@ -96,7 +92,13 @@ public class JobController {
             return "redirect:/login";
         }
 
+        if (!"".equals(queryParameters.get("message")))
+        {
+            model.addAttribute("error", queryParameters.get("message"));
+        }
+
         model.addAttribute("current_member", member);
+
 
         return "newJob";
     }
