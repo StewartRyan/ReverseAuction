@@ -40,8 +40,9 @@
                             <span th:text="${job.date}"></span>
                             <!--Only display email to member who won the bid -->
                             <!--<a class="text-muted" th:href="'mailto:' + ${job.memberEmail}" th:text="${job.memberEmail}"></a>-->
-                            <a th:if="${current_member.memberId != job.memberId}" th:href="@{/placeBid/{jobId}(jobId=${job.jobId})}" class="btn btn-primary btn-sm float-right " role="button" th:text="#{jobs.card.footer.button.bid}"></a>
+                            <a th:if="${current_member.memberId != job.memberId and job.state == 'active'}" th:href="@{/placeBid/{jobId}(jobId=${job.jobId})}" class="btn btn-primary btn-sm float-right " role="button" th:text="#{jobs.card.footer.button.bid}"></a>
                             <a th:if="${current_member.memberId == job.memberId}" th:href="@{/placeBid/{jobId}(jobId=${job.jobId})}" class="btn btn-secondary btn-sm float-right " role="button" th:text="#{jobs.card.footer.button.details}"></a>
+                            <a th:if="${current_member.memberId != job.memberId and job.state == 'expired'}" th:href="@{/placeBid/{jobId}(jobId=${job.jobId})}" class="btn btn-secondary btn-sm float-right " role="button" th:text="#{jobs.card.footer.button.expired}"></a>
                         </small>
                     </div>
                 </div>
