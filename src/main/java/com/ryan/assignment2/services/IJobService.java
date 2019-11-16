@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface IJobService {
     List<JobDetails> getAllJobs();
+    Job getJob(int jobId);
+    JobDetails getJobDetails(int jobId);
     void save(Job...job);
 }
