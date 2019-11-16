@@ -6,6 +6,7 @@ import com.ryan.assignment2.domain.models.MemberDetails;
 import com.ryan.assignment2.services.IJobService;
 import com.ryan.assignment2.services.IMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -101,5 +102,11 @@ public class JobController {
 
 
         return "newJob";
+    }
+
+    @Scheduled(fixedRate = 60000)
+    public void updateJobStates()
+    {
+        _jobService.updateJobStates();
     }
 }

@@ -10,4 +10,5 @@ public interface IJobService {
     Job getJob(int jobId);
     JobDetails getJobDetails(int jobId);
     void save(Job...job);
+    void updateJobStates();
 }
