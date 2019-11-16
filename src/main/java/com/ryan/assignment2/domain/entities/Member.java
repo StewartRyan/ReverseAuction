@@ -30,5 +30,10 @@ public class Member {
     private String phoneNumber;
 
     @ManyToMany
-    @EqualsAndHashCode.Exclude private Set<Role> roles;
+    @EqualsAndHashCode.Exclude
+    private Set<Role> roles;
+
+    @OneToMany(mappedBy = "member")
+    @EqualsAndHashCode.Exclude
+    private Set<Job> jobs;
 }

@@ -6,6 +6,7 @@ import com.ryan.assignment2.domain.models.MemberDetails;
 public interface IMemberService {
     Member findByUsername(String email);
     MemberDetails getCurrentMemberDetails();
-    String registerUser(Member newMember);
+    String registerUser(Member...newMember);
+    Member getCurrentMember();
 }
 

@@ -33,16 +33,16 @@
                         <h1 th:text="#{register.header}"></h1>
                         <div th:if="${error}" th:switch="${error}">
                             <div th:case="'email_error'" class="alert alert-danger" >
-                                <strong th:text="#{register.form.error}"></strong> <span th:text="#{register.form.error.email}"></span>
+                                <strong th:text="#{form.error}"></strong> <span th:text="#{register.form.error.email}"></span>
                             </div>
                             <div th:case="'password_error'" class="alert alert-danger" >
-                                <strong th:text="#{register.form.error}"></strong> <span th:text="#{register.form.error.password}"></span>
+                                <strong th:text="#{form.error}"></strong> <span th:text="#{register.form.error.password}"></span>
                             </div>
                             <div th:case="'name_error'" class="alert alert-danger" >
-                                <strong th:text="#{register.form.error}"></strong> <span th:text="#{register.form.error.name}"></span>
+                                <strong th:text="#{form.error}"></strong> <span th:text="#{register.form.error.name}"></span>
                             </div>
                             <div th:case="'phone_error'" class="alert alert-danger" >
-                                <strong th:text="#{register.form.error}"></strong> <span th:text="#{register.form.error.phone}"></span>
+                                <strong th:text="#{form.error}"></strong> <span th:text="#{register.form.error.phone}"></span>
                             </div>
                             <div th:case="*" class="alert alert-success">
                                 <span th:text="#{register.form.success}"></span> <a th:href="@{/}" th:text="#{register.form.success.homepage}"></a>

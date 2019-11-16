@@ -1,6 +1,7 @@
 package com.ryan.assignment2.services.Impl;
 
 import com.ryan.assignment2.domain.entities.Member;
+import com.ryan.assignment2.domain.entities.Role;
 import com.ryan.assignment2.domain.models.MemberDetails;
 import com.ryan.assignment2.repositories.IMemberRepository;
 import com.ryan.assignment2.repositories.IRoleRepository;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class MemberService implements IMemberService {
@@ -28,22 +30,30 @@ public class MemberService implements IMemberService {
 
     private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
-    public String registerUser(Member newMember)
+    public String registerUser(Member...members)
     {
-        newMember.setRoles(new HashSet<>(_roleRepository.findAll()));
-        newMember.setPassHash(
-                _passwordEncoder.encode(newMember.getPassHash())
-        );
+        HashSet<Role> roles = new HashSet<>(_roleRepository.findAll());
 
-        _userRepository.save(newMember);
+        for (Member newMember: members)
+        {
+            newMember.setRoles(roles);
+            newMember.setPassHash(
+                    _passwordEncoder.encode(newMember.getPassHash())
+            );
+
+            _userRepository.save(newMember);
+        }
+
         return "";
     }
 
-    public Member findByUsername(String email) {
+    public Member findByUsername(String email)
+    {
         return _userRepository.findByEmail(email);
     }
 
-    public MemberDetails getCurrentMemberDetails() {
+    public MemberDetails getCurrentMemberDetails()
+    {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof User)
         {
@@ -53,8 +63,21 @@ public class MemberService implements IMemberService {
             return new MemberDetails(
                     member.getEmail(),
                     member.getName(),
-                    member.getPhoneNumber()
+                    member.getPhoneNumber(),
+                    member.getUserId()
             );
+        }
+
+        return null;
+    }
+
+    public Member getCurrentMember()
+    {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof User)
+        {
+            String email = ((User) principal).getUsername();
+            return _userRepository.findByEmail(email);
         }
 
         return null;
