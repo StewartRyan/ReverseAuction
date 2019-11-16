@@ -4,6 +4,7 @@ package com.ryan.assignment2.domain.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +33,11 @@ public class Job
 
     @Column(nullable=false)
     private String state = "active";
+
+    @Column(name="timestamp",
+            columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
+            updatable=false)
+    private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
     @ManyToOne()
     @EqualsAndHashCode.Exclude

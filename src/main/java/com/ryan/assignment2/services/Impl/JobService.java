@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,5 +68,22 @@ public class JobService implements IJobService
     {
         for (Job job : jobs)
             _jobRepository.save(job);
+    }
+
+    public void updateJobStates()
+    {
+        // Calculate 20 days
+        Calendar calendar = Calendar.getInstance();
+        calendar.getTime();
+        calendar.add(Calendar.DAY_OF_YEAR, -20);
+
+        Date expiredDate = calendar.getTime();
+
+        List<Job> expiredJobs = _jobRepository.findByTimestampBefore(expiredDate);
+        for (Job job: expiredJobs)
+        {
+            job.setState("expired");
+            _jobRepository.save(job);
+        }
     }
 }

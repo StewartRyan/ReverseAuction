@@ -28,13 +28,10 @@ public class MemberController {
     public String registerUser(@RequestParam Map<String, String> user, Model model)
     {
         // Validate user input
-        String errorMessage = checkUserValues(user);
-
-        // Add error message to model for front-end
-        model.addAttribute("error", errorMessage);
+        String returnMessage = checkUserValues(user);
 
         // Only if no error is present, add new user to DB
-        if ("".equals(errorMessage))
+        if ("".equals(returnMessage))
         {
             // Create the new user
             Member newMember = new Member();
@@ -46,14 +43,20 @@ public class MemberController {
             _userService.registerUser(newMember);
 
             _securityService.autoLogin(user.get("email"), user.get("password"));
+            returnMessage = "success";
         }
 
-        return "register";
+        return "redirect:/register?message=" + returnMessage;
     }
 
     @GetMapping("/register")
-    public String registerPage()
+    public String registerPage(@RequestParam Map<String, String> queryParameters, Model model)
     {
+        if (!"".equals(queryParameters.get("message")))
+        {
+            model.addAttribute("error", queryParameters.get("message"));
+        }
+
         return "register";
     }
 
