@@ -45,9 +45,10 @@
                 </div>
                 <table th:if="${bids}" class="table">
                     <tbody>
-                        <tr th:each="bid : ${bids}">
+                        <tr th:each="bid, status: ${bids}" th:style="${status.last} ? 'font-weight: bold'">
                             <td th:text="${bid.amount}"></td>
                             <td th:text="${bid.timestamp}"></td>
+                            <td th:if="${job.state == 'expired'}" th:text="${status.last} ? ${bid.memberName}"></td>
                         </tr>
                     </tbody>
                 </table>

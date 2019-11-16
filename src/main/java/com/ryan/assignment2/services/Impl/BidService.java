@@ -44,7 +44,8 @@ public class BidService implements IBidService
                         b.getTimestamp(),
                         b.getJob().getJobId(),
                         b.getMember().getUserId(),
-                        b.getMember().getEmail()
+                        b.getMember().getEmail(),
+                        b.getMember().getName()
 
                 )).collect(Collectors.toList());
     }

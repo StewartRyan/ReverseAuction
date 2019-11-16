@@ -15,4 +15,5 @@ public class BidDetails
     private int jobId;
     private int memberId;
     private String memberEmail;
+    private String memberName;
 }
