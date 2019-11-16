@@ -7,10 +7,12 @@ import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
-public class JobDetails {
+public class JobDetails
+{
     private String name;
     private String description;
     private LocalDate date;
     private int jobId;
     private int memberId;
+    private String memberEmail;
 }

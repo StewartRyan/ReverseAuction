@@ -36,7 +36,10 @@
                         <p class="card-text" th:text="${job.description}"></p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted" th:text="${job.date}"></small>
+                        <small class="text-muted">
+                            <span th:text="${job.date} + ' | '"></span>
+                            <a class="text-muted" th:href="'mailto:' + ${job.memberEmail}" th:text="${job.memberEmail}"></a>
+                        </small>
                     </div>
                 </div>
             </div>

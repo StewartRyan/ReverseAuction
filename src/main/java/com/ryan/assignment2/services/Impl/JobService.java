@@ -12,24 +12,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class JobService implements IJobService {
-
+public class JobService implements IJobService
+{
     @Autowired
     private IJobRepository _jobRepository;
 
-    public List<JobDetails> getAllJobs() {
+    public List<JobDetails> getAllJobs()
+    {
+        // Get all jobs from the DB and translate them into JobDetails objects
         return _jobRepository.findAll().stream()
                 .map(j -> new JobDetails(
                     j.getName(),
                     j.getDescription(),
                     j.getDate(),
                     j.getJobId(),
-                    j.getMember().getUserId()
+                    j.getMember().getUserId(),
+                    j.getMember().getEmail()
 
         )).collect(Collectors.toList());
     }
 
-    public void save(Job...jobs) {
+    public void save(Job...jobs)
+    {
         for (Job job : jobs)
             _jobRepository.save(job);
     }
