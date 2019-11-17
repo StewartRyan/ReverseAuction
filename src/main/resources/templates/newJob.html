@@ -17,6 +17,12 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
+                <a class="nav-link" th:href="@{__${#httpServletRequest.requestURI}__} + '?lang=en'" th:text="#{header.lang.english}"></a>
+            </li>
+            <li class="nav-item border-right">
+                <a class="nav-link" th:href="@{__${#httpServletRequest.requestURI}__} + '?lang=nl'" th:text="#{header.lang.dutch}"></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/}" th:text="#{header.home}"></a>
             </li>
             <li class="nav-item active">
