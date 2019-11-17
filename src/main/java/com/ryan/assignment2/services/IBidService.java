@@ -10,4 +10,5 @@ public interface IBidService
     void save(Bid...bids);
     boolean isBidValid(int jobId, float amount);
     List<BidDetails> getBidsForJob(int jobId);
+    List<Bid> getBidsByMemberId(int memberId);
 }

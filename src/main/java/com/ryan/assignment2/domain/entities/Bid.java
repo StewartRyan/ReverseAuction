@@ -1,5 +1,6 @@
 package com.ryan.assignment2.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,9 +28,11 @@ public class Bid
 
     @ManyToOne()
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private Member member;
 
     @ManyToOne()
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private Job job;
 }

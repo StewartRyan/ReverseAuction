@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 
 @Service
 public class MemberService implements IMemberService
@@ -65,7 +64,7 @@ public class MemberService implements IMemberService
                     member.getEmail(),
                     member.getName(),
                     member.getPhoneNumber(),
-                    member.getUserId()
+                    member.getMemberId()
             );
         }
 
