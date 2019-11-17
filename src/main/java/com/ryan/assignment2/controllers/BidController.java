@@ -17,7 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class BidController {
+public class BidController
+{
     @Autowired
     private IBidService _bidService;
 

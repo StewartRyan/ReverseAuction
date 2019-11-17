@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
-public class DataLoader implements ApplicationRunner {
-
+public class DataLoader implements ApplicationRunner
+{
     @Autowired
     IRoleService _roleService;
 
@@ -30,9 +30,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     IBidService _bidService;
 
-
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) throws Exception
+    {
         Role standardRole = new Role();
         standardRole.setName("standard");
 
@@ -67,7 +67,7 @@ public class DataLoader implements ApplicationRunner {
         Job job3 = new Job();
         job3.setDate(LocalDate.now());
         job3.setName("Fix my roof");
-        job3.setDescription("My has a big hole in it.");
+        job3.setDescription("My roof has a big hole in it.");
         job3.setMember(newMember);
         job3.setState("expired");
 

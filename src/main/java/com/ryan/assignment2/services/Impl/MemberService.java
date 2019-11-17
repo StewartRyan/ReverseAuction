@@ -18,7 +18,8 @@ import java.util.HashSet;
 import java.util.List;
 
 @Service
-public class MemberService implements IMemberService {
+public class MemberService implements IMemberService
+{
     @Autowired
     private IMemberRepository _userRepository;
 

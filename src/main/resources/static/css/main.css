@@ -1,28 +1,35 @@
-body{
+body
+{
     background-color: #f3f3f3;
 }
 
-.container {
+.container
+{
     margin-top: 40px !important;
 }
 
-.registration-btn {
+.registration-btn
+{
     border: 1px solid #007bff !important;
     color: #007bff !important;
 }
 
-.center-block {
+.center-block
+{
     float: none !important;
 }
 
-.card-deck .card {
+.card-deck .card
+{
     margin-bottom: 15px !important;
 }
 
-.card {
+.card
+{
     min-width: 200px !important;
 }
 
-.border-right {
+.border-right
+{
     border-right: 1px solid #3d92ef !important;
 }
