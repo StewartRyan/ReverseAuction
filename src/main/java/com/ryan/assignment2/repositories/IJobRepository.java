@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Date;
 import java.util.List;
 
-public interface IJobRepository extends JpaRepository<Job, Integer> {
+public interface IJobRepository extends JpaRepository<Job, Integer>
+{
     List<Job> findByTimestampBefore(Date expiryDate);
 }

@@ -12,7 +12,8 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class Member
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;

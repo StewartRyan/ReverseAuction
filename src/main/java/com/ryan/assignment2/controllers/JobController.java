@@ -18,14 +18,15 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class JobController {
+public class JobController
+{
     @Autowired
     private IMemberService _userService;
 
     @Autowired
     private IJobService _jobService;
 
-    @GetMapping(value= { "/"})
+    @GetMapping(value= {"/"})
     public String handleIndexRequest(Model model)
     {
         List<JobDetails> jobs = _jobService.getAllJobs();
@@ -73,16 +74,6 @@ public class JobController {
         return "redirect:/newJob?message=" + returnMessage;
     }
 
-    private String checkJobValues(Map<String, String> job)
-    {
-        if ("".equals(job.get("name")))
-            return "name_error";
-
-        if ("".equals(job.get("description")))
-            return "description_error";
-
-        return "";
-    }
 
     @GetMapping("/newJob")
     public String newJobPage(Model model, @RequestParam Map<String, String> queryParameters)
@@ -108,5 +99,16 @@ public class JobController {
     public void updateJobStates()
     {
         _jobService.updateJobStates();
+    }
+
+    private String checkJobValues(Map<String, String> job)
+    {
+        if ("".equals(job.get("name")))
+            return "name_error";
+
+        if ("".equals(job.get("description")))
+            return "description_error";
+
+        return "";
     }
 }

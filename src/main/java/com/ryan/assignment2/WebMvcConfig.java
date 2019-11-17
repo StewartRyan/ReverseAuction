@@ -13,11 +13,11 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import java.util.Locale;
 
 @Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
-
-
+public class WebMvcConfig implements WebMvcConfigurer
+{
     @Bean(name = "localeResolver")
-    public LocaleResolver getLocaleResolver()  {
+    public LocaleResolver getLocaleResolver()
+    {
         CookieLocaleResolver resolver= new CookieLocaleResolver();
         resolver.setDefaultLocale(Locale.UK);
         resolver.setCookieMaxAge(60*60*24);
@@ -25,15 +25,18 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     @Bean(name = "messageSource")
-    public MessageSource getMessageResource()  {
+    public MessageSource getMessageResource()
+    {
         ReloadableResourceBundleMessageSource messageResource= new ReloadableResourceBundleMessageSource();
 
         messageResource.setBasename("classpath:locales/messages");
         messageResource.setDefaultEncoding("UTF-8");
         return messageResource;
     }
+
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(InterceptorRegistry registry)
+    {
         LocaleChangeInterceptor localeInterceptor = new LocaleChangeInterceptor();
         localeInterceptor.setParamName("lang");
 

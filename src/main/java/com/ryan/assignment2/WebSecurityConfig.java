@@ -21,16 +21,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
-//        http.authorizeRequests().antMatchers("/css/**", "/h2", "/h2/**","/", "/register", "/counties/**", "/towns/**",  "/county/**", "/town/**")
-//                .permitAll()
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .formLogin()
-//                .and()
-//                .headers().frameOptions().disable()
-//                .and().
-//                csrf().disable();
         http
                 .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/register","/h2", "/h2/**","/").permitAll()
@@ -46,11 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
                 .headers().frameOptions().disable()
                 .and().
                 csrf().disable();
-        http.sessionManagement().maximumSessions(2);
-
-//        http.sessionManagement()
-//                .expiredUrl("/sessionExpired.html")
-//                .invalidSessionUrl("/invalidSession.html");
+        http.sessionManagement().maximumSessions(50);
     }
 
     @Bean
@@ -59,19 +45,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
-
     @Bean
-    public AuthenticationManager customAuthenticationManager() throws Exception {
+    public AuthenticationManager customAuthenticationManager() throws Exception
+    {
         return authenticationManager();
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
+    {
         auth.userDetailsService(_userDetailsService).passwordEncoder(passwordEncoder());
     }
 
@@ -79,7 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     PasswordEncoder passwordEncoder;
 
     @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher() {
+    public HttpSessionEventPublisher httpSessionEventPublisher()
+    {
         return new HttpSessionEventPublisher();
     }
 }

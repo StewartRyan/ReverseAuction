@@ -35,7 +35,7 @@ public class UserInfo implements UserDetailsService
         for (Role role : member.getRoles())
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
 
-        return new org /////// WHY IS  THIS  NULL
+        return new org
                 .springframework
                 .security
                 .core
@@ -46,6 +46,4 @@ public class UserInfo implements UserDetailsService
                         grantedAuthorities
         );
     }
-
-
 }

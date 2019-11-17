@@ -17,7 +17,8 @@ import java.util.Map;
 
 @Slf4j
 @Controller
-public class MemberController {
+public class MemberController
+{
     @Autowired
     private IMemberService _userService;
 
@@ -61,7 +62,8 @@ public class MemberController {
     }
 
     @GetMapping("/login")
-    public String login(Model model, String error, String logout) {
+    public String login(Model model, String error, String logout)
+    {
 
         if (error != null)
             model.addAttribute("error", "login_error");

@@ -11,7 +11,8 @@ import java.sql.Timestamp;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bid {
+public class Bid
+{
     @Id
     @GeneratedValue
     private int bidId;
