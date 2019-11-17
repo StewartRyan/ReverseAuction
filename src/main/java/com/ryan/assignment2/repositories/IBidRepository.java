@@ -8,4 +8,5 @@ import java.util.List;
 public interface IBidRepository extends JpaRepository<Bid, Integer>
 {
     List<Bid> findByJob_JobId(int jobId);
+    List<Bid> findByMember_MemberId(int memberId);
 }

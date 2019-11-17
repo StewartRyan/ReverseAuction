@@ -3,12 +3,10 @@ package com.ryan.assignment2.services.Impl;
 import com.ryan.assignment2.domain.entities.Job;
 import com.ryan.assignment2.domain.models.JobDetails;
 import com.ryan.assignment2.repositories.IJobRepository;
-import com.ryan.assignment2.repositories.IMemberRepository;
 import com.ryan.assignment2.services.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +37,7 @@ public class JobService implements IJobService
                     job.getDescription(),
                     job.getDate(),
                     job.getJobId(),
-                    job.getMember().getUserId(),
+                    job.getMember().getMemberId(),
                     job.getMember().getEmail(),
                     job.getState()
             );
@@ -57,7 +55,7 @@ public class JobService implements IJobService
                     j.getDescription(),
                     j.getDate(),
                     j.getJobId(),
-                    j.getMember().getUserId(),
+                    j.getMember().getMemberId(),
                     j.getMember().getEmail(),
                     j.getState()
 
@@ -85,5 +83,10 @@ public class JobService implements IJobService
             job.setState("expired");
             _jobRepository.save(job);
         }
+    }
+
+    @Override
+    public List<Job> getAllActiveJobs() {
+        return _jobRepository.findByState("active");
     }
 }
