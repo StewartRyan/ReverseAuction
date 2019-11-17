@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{jobs.title}"></title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css" />
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" th:href="@{/}" th:text="#{header.title}"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{__${#httpServletRequest.requestURI}__} + '?lang=en'" th:text="#{header.lang.english}"></a>
+            </li>
+            <li class="nav-item border-right">
+                <a class="nav-link" th:href="@{__${#httpServletRequest.requestURI}__} + '?lang=nl'" th:text="#{header.lang.dutch}"></a>
+            </li>
+        </ul>
+        <span class="navbar-text"></span>
+    </div>
+</nav>
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 th:text="#{errorPage.text}"></h1>
+        </div>
+    </div>
+</main>
+</body>
+</html>
