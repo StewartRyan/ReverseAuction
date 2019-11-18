@@ -118,7 +118,7 @@ public class BidController
         {
             float amount = Float.parseFloat(bid.get("amount"));
 
-            if (amount < 0.01)
+            if (amount < 1)
             {
                 return "invalid_amount_error";
             }
