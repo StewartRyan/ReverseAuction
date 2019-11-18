@@ -33,3 +33,9 @@ body
 {
     border-right: 1px solid #3d92ef !important;
 }
+
+.national-flag
+{
+    height: 20px;
+    border: 1px solid white;
+}
