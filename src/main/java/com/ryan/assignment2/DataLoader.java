@@ -62,13 +62,13 @@ public class DataLoader implements ApplicationRunner
         job2.setDate(LocalDate.now());
         job2.setName("Fix my bike please");
         job2.setDescription("My bike is broken, can you come to fix it?");
-        job2.setMember(newMember2);
+        job2.setMember(newMember);
 
         Job job3 = new Job();
         job3.setDate(LocalDate.now());
         job3.setName("Fix my roof");
         job3.setDescription("My roof has a big hole in it.");
-        job3.setMember(newMember);
+        job3.setMember(newMember2);
         job3.setState("expired");
 
         _jobService.save(job1, job2, job3);
