@@ -39,7 +39,8 @@ public class JobService implements IJobService
                     job.getJobId(),
                     job.getMember().getMemberId(),
                     job.getMember().getEmail(),
-                    job.getState()
+                    job.getState(),
+                    job.getMember().getName()
             );
         }
 
@@ -57,7 +58,8 @@ public class JobService implements IJobService
                     j.getJobId(),
                     j.getMember().getMemberId(),
                     j.getMember().getEmail(),
-                    j.getState()
+                    j.getState(),
+                    j.getMember().getName()
 
         )).collect(Collectors.toList());
     }

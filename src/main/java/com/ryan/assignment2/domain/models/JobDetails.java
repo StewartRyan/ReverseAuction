@@ -16,4 +16,5 @@ public class JobDetails
     private int memberId;
     private String memberEmail;
     private String state;
+    private String memberName;
 }
