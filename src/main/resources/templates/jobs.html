@@ -43,6 +43,7 @@
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">
+                            <span th:text="${job.memberName} + ' | '"></span>
                             <span th:text="${job.date}"></span>
                             <a th:if="${current_member.memberId != job.memberId and job.state == 'active'}" th:href="@{/placeBid/{jobId}(jobId=${job.jobId})}" class="btn btn-primary btn-sm float-right " role="button" th:text="#{jobs.card.footer.button.bid}"></a>
                             <a th:if="${current_member.memberId == job.memberId}" th:href="@{/placeBid/{jobId}(jobId=${job.jobId})}" class="btn btn-secondary btn-sm float-right " role="button" th:text="#{jobs.card.footer.button.details}"></a>
