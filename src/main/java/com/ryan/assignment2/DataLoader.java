@@ -50,7 +50,13 @@ public class DataLoader implements ApplicationRunner
         newMember2.setName("Ryan S.");
         newMember2.setPhoneNumber("087-1234567");
 
-        _memberService.registerUser(newMember, newMember2);
+        Member newMember3 = new Member();
+        newMember3.setPassHash("a");
+        newMember3.setEmail("name@example.com");
+        newMember3.setName("James Taylor");
+        newMember3.setPhoneNumber("087-000000");
+
+        _memberService.registerUser(newMember, newMember2, newMember3);
 
         Job job1 = new Job();
         job1.setDate(LocalDate.now());
@@ -62,7 +68,7 @@ public class DataLoader implements ApplicationRunner
         job2.setDate(LocalDate.now());
         job2.setName("Fix my bike please");
         job2.setDescription("My bike is broken, can you come to fix it?");
-        job2.setMember(newMember);
+        job2.setMember(newMember2);
 
         Job job3 = new Job();
         job3.setDate(LocalDate.now());
@@ -71,7 +77,13 @@ public class DataLoader implements ApplicationRunner
         job3.setMember(newMember2);
         job3.setState("expired");
 
-        _jobService.save(job1, job2, job3);
+        Job job4 = new Job();
+        job4.setDate(LocalDate.now());
+        job4.setName("Help me move rubbish");
+        job4.setDescription("I need rubbish bins to be moved to the dump");
+        job4.setMember(newMember3);
+
+        _jobService.save(job1, job2, job3, job4);
 
         Bid newBid = new Bid();
         newBid.setJob(job3);
