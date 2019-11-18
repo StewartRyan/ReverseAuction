@@ -24,10 +24,6 @@ body
     margin-bottom: 15px !important;
 }
 
-.card
-{
-    min-width: 200px !important;
-}
 
 .border-right
 {
@@ -38,4 +34,11 @@ body
 {
     height: 20px;
     border: 1px solid white;
+}
+
+@media (min-width: 576px) {
+    .card-deck .card {
+        min-width: 320px !important;
+        max-width: 320px !important;
+    }
 }
