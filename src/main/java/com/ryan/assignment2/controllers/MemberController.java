@@ -58,6 +58,11 @@ public class MemberController
             model.addAttribute("error", queryParameters.get("message"));
         }
 
+        if ("login".equals(queryParameters.get("ref")))
+        {
+            return "redirect:/login";
+        }
+
         return "register";
     }
 
