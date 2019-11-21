@@ -20,7 +20,7 @@ import java.util.HashSet;
 public class MemberService implements IMemberService
 {
     @Autowired
-    private IMemberRepository _userRepository;
+    private IMemberRepository _memberRepository;
 
     @Autowired
     private IRoleRepository _roleRepository;
@@ -41,15 +41,26 @@ public class MemberService implements IMemberService
                     _passwordEncoder.encode(newMember.getPassHash())
             );
 
-            _userRepository.save(newMember);
+
+            if (_memberRepository.existsByEmail(newMember.getEmail()))
+            {
+                return "email_taken";
+            }
+
+            if (_memberRepository.existsByPhoneNumber(newMember.getPhoneNumber()))
+            {
+                return "phone_taken";
+            }
+
+            _memberRepository.save(newMember);
         }
 
-        return "";
+        return "success";
     }
 
     public Member findByUsername(String email)
     {
-        return _userRepository.findByEmail(email);
+        return _memberRepository.findByEmail(email);
     }
 
     public MemberDetails getCurrentMemberDetails()
@@ -58,7 +69,7 @@ public class MemberService implements IMemberService
         if (principal instanceof User)
         {
             String email = ((User) principal).getUsername();
-            Member member = _userRepository.findByEmail(email);
+            Member member = _memberRepository.findByEmail(email);
 
             return new MemberDetails(
                     member.getEmail(),
@@ -77,7 +88,7 @@ public class MemberService implements IMemberService
         if (principal instanceof User)
         {
             String email = ((User) principal).getUsername();
-            return _userRepository.findByEmail(email);
+            return _memberRepository.findByEmail(email);
         }
 
         return null;
