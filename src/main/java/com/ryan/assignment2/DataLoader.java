@@ -42,19 +42,19 @@ public class DataLoader implements ApplicationRunner
         newMember.setPassHash("a");
         newMember.setEmail("some_man@example.com");
         newMember.setName("John Doe");
-        newMember.setPhoneNumber("087-7654321");
+        newMember.setPhoneNumber("0877654321");
 
         Member newMember2 = new Member();
         newMember2.setPassHash("a");
         newMember2.setEmail("a@a.a");
         newMember2.setName("Ryan S.");
-        newMember2.setPhoneNumber("087-1234567");
+        newMember2.setPhoneNumber("0871234567");
 
         Member newMember3 = new Member();
         newMember3.setPassHash("a");
         newMember3.setEmail("name@example.com");
         newMember3.setName("James Taylor");
-        newMember3.setPhoneNumber("087-000000");
+        newMember3.setPhoneNumber("087000000");
 
         _memberService.registerUser(newMember, newMember2, newMember3);
 

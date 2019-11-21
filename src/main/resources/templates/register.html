@@ -66,6 +66,12 @@
                             <div th:case="'email_error'" class="alert alert-danger" >
                                 <strong th:text="#{form.error}"></strong> <span th:text="#{register.form.error.email}"></span>
                             </div>
+                            <div th:case="'email_taken'" class="alert alert-danger" >
+                                <strong th:text="#{form.error}"></strong> <span th:text="#{register.form.error.email.taken}"></span>
+                            </div>
+                            <div th:case="'phone_taken'" class="alert alert-danger" >
+                                <strong th:text="#{form.error}"></strong> <span th:text="#{register.form.error.phone.taken}"></span>
+                            </div>
                             <div th:case="'password_error'" class="alert alert-danger" >
                                 <strong th:text="#{form.error}"></strong> <span th:text="#{register.form.error.password}"></span>
                             </div>

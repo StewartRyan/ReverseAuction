@@ -20,13 +20,13 @@ import java.util.Map;
 public class MemberController
 {
     @Autowired
-    private IMemberService _userService;
+    private IMemberService _memberService;
 
     @Autowired
     private ISecurityService _securityService;
 
     @PostMapping("/register")
-    public String registerUser(@RequestParam Map<String, String> user, Model model)
+    public String registerUser(@RequestParam Map<String, String> user)
     {
         // Validate user input
         String returnMessage = checkUserValues(user);
@@ -41,10 +41,11 @@ public class MemberController
             newMember.setPassHash(user.get("password"));
             newMember.setPhoneNumber(user.get("phone"));
 
-            _userService.registerUser(newMember);
-
-            _securityService.autoLogin(user.get("email"), user.get("password"));
-            returnMessage = "success";
+            returnMessage = _memberService.registerUser(newMember);
+            if ("success".equals(returnMessage))
+            {
+                _securityService.autoLogin(user.get("email"), user.get("password"));
+            }
         }
 
         return "redirect:/register?message=" + returnMessage;
