@@ -16,6 +16,11 @@ public class BidService implements IBidService
     @Autowired
     private IBidRepository _bidRepository;
 
+    public BidService(IBidRepository bidRepository)
+    {
+        _bidRepository = bidRepository;
+    }
+
     public void save(Bid...bids)
     {
         for (Bid bid: bids)
