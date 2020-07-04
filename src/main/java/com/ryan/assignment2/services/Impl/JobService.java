@@ -19,6 +19,10 @@ public class JobService implements IJobService
     @Autowired
     private IJobRepository _jobRepository;
 
+    public JobService(IJobRepository jobRepository) {
+        _jobRepository = jobRepository;
+    }
+
     public Job getJob(int jobId)
     {
         Optional<Job> job = _jobRepository.findById(jobId);
