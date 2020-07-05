@@ -30,6 +30,12 @@ public class MemberService implements IMemberService
 
     private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
+    public MemberService(IMemberRepository memberRepository, IRoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+        _memberRepository = memberRepository;
+        _roleRepository = roleRepository;
+        _passwordEncoder = passwordEncoder;
+    }
+
     public String registerUser(Member...members)
     {
         HashSet<Role> roles = new HashSet<>(_roleRepository.findAll());
@@ -40,7 +46,6 @@ public class MemberService implements IMemberService
             newMember.setPassHash(
                     _passwordEncoder.encode(newMember.getPassHash())
             );
-
 
             if (_memberRepository.existsByEmail(newMember.getEmail()))
             {
