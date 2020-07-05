@@ -8,30 +8,24 @@ import com.ryan.assignment2.repositories.IBidRepository;
 import com.ryan.assignment2.services.Impl.BidService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Matchers;
-import org.mockito.Mock;
-import org.mockito.internal.matchers.Any;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
-import java.lang.reflect.Array;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class BidServiceTest
 {
-    @Mock // mock account repository mocks the abstracted functionality
+    @Mock
     IBidRepository _mockBidRepository;
 
-    // Here we test a happy path scenario where everything completes successfully
-    // and the owner is successfully added to an account
+    /************************ IS BID VALID TESTS *********************************/
     @Test
     public void isBidValidSuccessTest()
     {
@@ -40,8 +34,6 @@ public class BidServiceTest
         BidService bidService = new BidService(_mockBidRepository);
         boolean actual = bidService.isBidValid(0, 0);
 
-        // We expect an empty string to be returned on success
-        // Therefore we assert that the actual result is an empty string
         assertTrue(actual);
     }
 
@@ -53,10 +45,10 @@ public class BidServiceTest
         BidService bidService = new BidService(_mockBidRepository);
         boolean actual = bidService.isBidValid(0, 2);
 
-        // We expect an empty string to be returned on success
-        // Therefore we assert that the actual result is an empty string
         assertFalse(actual);
     }
+
+    /************************ SAVE BID TESTS *********************************/
 
     @Test
     public void saveBidSuccessTest()
@@ -64,6 +56,8 @@ public class BidServiceTest
         BidService bidService = new BidService(_mockBidRepository);
         bidService.save(getMockBid());
     }
+
+    /************************ GET BIDS BY MEMBER ID TESTS *********************************/
 
     @Test
     public void getBidsByMemberIdSuccessTest()
@@ -76,6 +70,8 @@ public class BidServiceTest
         assertThat(actual, samePropertyValuesAs(getMockBids()));
     }
 
+    /************************ GET BIDS FOR JOB TESTS *********************************/
+
     @Test
     public void getBidsForJobSuccessTest()
     {
@@ -84,8 +80,6 @@ public class BidServiceTest
         BidService bidService = new BidService(_mockBidRepository);
         List<BidDetails> actual = bidService.getBidsForJob(0);
 
-        // We expect an empty string to be returned on success
-        // Therefore we assert that the actual result is an empty string
         assertThat(actual, samePropertyValuesAs(getMockBidsDetails()));
     }
 
@@ -97,10 +91,10 @@ public class BidServiceTest
         BidService bidService = new BidService(_mockBidRepository);
         List<BidDetails> actual = bidService.getBidsForJob(0);
 
-        // We expect an empty string to be returned on success
-        // Therefore we assert that the actual result is an empty string
         assertTrue(actual.isEmpty());
     }
+
+    /************************ HELPER METHODS *********************************/
 
     private Bid getMockBid()
     {
@@ -144,9 +138,6 @@ public class BidServiceTest
         );
     }
 
-
-
-    // Mocked Owner object, we'll use this for parameters requiring Owner objects
     private List<Bid> getMockBids()
     {
         List<Bid> list = new ArrayList<>();
@@ -155,7 +146,6 @@ public class BidServiceTest
         return list;
     }
 
-    // Mocked Owner object, we'll use this for parameters requiring Owner objects
     private List<BidDetails> getMockBidsDetails()
     {
         List<BidDetails> list = new ArrayList<>();
