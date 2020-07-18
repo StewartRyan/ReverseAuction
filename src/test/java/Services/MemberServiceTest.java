@@ -56,9 +56,9 @@ public class MemberServiceTest
     public void registerUserSuccessTest()
     {
         when(_mockRoleRepository.findAll()).thenReturn(getMockRoles());
-        when(_mockPasswordEncoder.encode("test")).thenReturn("test");
-        when(_mockMemberRepository.existsByEmail("test")).thenReturn(false);
-        when(_mockMemberRepository.existsByPhoneNumber("test")).thenReturn(false);
+        when(_mockPasswordEncoder.encode(any(String.class))).thenReturn("test");
+        when(_mockMemberRepository.existsByEmail(any(String.class))).thenReturn(false);
+        when(_mockMemberRepository.existsByPhoneNumber(any(String.class))).thenReturn(false);
         when(_mockMemberRepository.save(getMockMember())).thenReturn(getMockMember());
 
         MemberService memberService = new MemberService(_mockMemberRepository, _mockRoleRepository, _mockPasswordEncoder);
@@ -71,8 +71,8 @@ public class MemberServiceTest
     public void registerUserEmailTakenTest()
     {
         when(_mockRoleRepository.findAll()).thenReturn(getMockRoles());
-        when(_mockPasswordEncoder.encode("test")).thenReturn("test");
-        when(_mockMemberRepository.existsByEmail("test")).thenReturn(true);
+        when(_mockPasswordEncoder.encode(any(String.class))).thenReturn("test");
+        when(_mockMemberRepository.existsByEmail(any(String.class))).thenReturn(true);
 
         MemberService memberService = new MemberService(_mockMemberRepository, _mockRoleRepository, _mockPasswordEncoder);
         String actual = memberService.registerUser(getMockMember());
@@ -84,9 +84,9 @@ public class MemberServiceTest
     public void registerUserPhoneNumberTakenTest()
     {
         when(_mockRoleRepository.findAll()).thenReturn(getMockRoles());
-        when(_mockPasswordEncoder.encode("test")).thenReturn("test");
-        when(_mockMemberRepository.existsByEmail("test")).thenReturn(false);
-        when(_mockMemberRepository.existsByPhoneNumber("test")).thenReturn(true);
+        when(_mockPasswordEncoder.encode(any(String.class))).thenReturn("test");
+        when(_mockMemberRepository.existsByEmail(any(String.class))).thenReturn(false);
+        when(_mockMemberRepository.existsByPhoneNumber(any(String.class))).thenReturn(true);
 
         MemberService memberService = new MemberService(_mockMemberRepository, _mockRoleRepository, _mockPasswordEncoder);
         String actual = memberService.registerUser(getMockMember());
@@ -99,7 +99,7 @@ public class MemberServiceTest
     @Test
     public void findByUsernameSuccessTest()
     {
-        when(_mockMemberRepository.findByEmail("test")).thenReturn(getMockMember());
+        when(_mockMemberRepository.findByEmail(any(String.class))).thenReturn(getMockMember());
 
         MemberService memberService = new MemberService(_mockMemberRepository, _mockRoleRepository, _mockPasswordEncoder);
         Member actual = memberService.findByUsername("test");
@@ -119,7 +119,7 @@ public class MemberServiceTest
         SecurityContextHolder.setContext(securityContext);
 
         when(authentication.getPrincipal()).thenReturn(getMockUser());
-        when(_mockMemberRepository.findByEmail("test")).thenReturn(getMockMember());
+        when(_mockMemberRepository.findByEmail(any(String.class))).thenReturn(getMockMember());
 
         MemberService memberService = new MemberService(_mockMemberRepository, _mockRoleRepository, _mockPasswordEncoder);
         MemberDetails actual = memberService.getCurrentMemberDetails();
@@ -156,7 +156,7 @@ public class MemberServiceTest
         SecurityContextHolder.setContext(securityContext);
 
         when(authentication.getPrincipal()).thenReturn(getMockUser());
-        when(_mockMemberRepository.findByEmail("test")).thenReturn(getMockMember());
+        when(_mockMemberRepository.findByEmail(any(String.class))).thenReturn(getMockMember());
 
         MemberService memberService = new MemberService(_mockMemberRepository, _mockRoleRepository, _mockPasswordEncoder);
         Member actual = memberService.getCurrentMember();
