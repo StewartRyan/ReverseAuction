@@ -17,6 +17,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
@@ -29,7 +30,7 @@ public class BidServiceTest
     @Test
     public void isBidValidSuccessTest()
     {
-        when(_mockBidRepository.findByJob_JobId(0)).thenReturn(getMockBids());
+        when(_mockBidRepository.findByJob_JobId(any(int.class))).thenReturn(getMockBids());
 
         BidService bidService = new BidService(_mockBidRepository);
         boolean actual = bidService.isBidValid(0, 0);
@@ -40,7 +41,7 @@ public class BidServiceTest
     @Test
     public void isBidValidFailureTest()
     {
-        when(_mockBidRepository.findByJob_JobId(0)).thenReturn(getMockBids());
+        when(_mockBidRepository.findByJob_JobId(any(int.class))).thenReturn(getMockBids());
 
         BidService bidService = new BidService(_mockBidRepository);
         boolean actual = bidService.isBidValid(0, 2);
@@ -62,7 +63,7 @@ public class BidServiceTest
     @Test
     public void getBidsByMemberIdSuccessTest()
     {
-        when(_mockBidRepository.findByMember_MemberId(0)).thenReturn(getMockBids());
+        when(_mockBidRepository.findByMember_MemberId(any(int.class))).thenReturn(getMockBids());
 
         BidService bidService = new BidService(_mockBidRepository);
         List<Bid> actual = bidService.getBidsByMemberId(0);
@@ -75,7 +76,7 @@ public class BidServiceTest
     @Test
     public void getBidsForJobSuccessTest()
     {
-        when(_mockBidRepository.findByJob_JobId(0)).thenReturn(getMockBids());
+        when(_mockBidRepository.findByJob_JobId(any(int.class))).thenReturn(getMockBids());
 
         BidService bidService = new BidService(_mockBidRepository);
         List<BidDetails> actual = bidService.getBidsForJob(0);
@@ -86,7 +87,7 @@ public class BidServiceTest
     @Test
     public void getBidsForJobFailureTest()
     {
-        when(_mockBidRepository.findByJob_JobId(0)).thenReturn(new ArrayList<>());
+        when(_mockBidRepository.findByJob_JobId(any(int.class))).thenReturn(new ArrayList<>());
 
         BidService bidService = new BidService(_mockBidRepository);
         List<BidDetails> actual = bidService.getBidsForJob(0);
