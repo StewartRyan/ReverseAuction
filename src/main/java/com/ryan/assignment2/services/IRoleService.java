@@ -4,6 +4,6 @@ import com.ryan.assignment2.domain.entities.Role;
 
 public interface IRoleService
 {
-    void insertRoles();
-    void save(Role role);
+    Role insertRoles();
+    Role save(Role role);
 }

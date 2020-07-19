@@ -13,16 +13,20 @@ public class RoleService implements IRoleService
     @Autowired
     private IRoleRepository _roleRepository;
 
-    public void insertRoles()
+    public RoleService(IRoleRepository roleRepository) {
+        _roleRepository = roleRepository;
+    }
+
+    public Role insertRoles()
     {
         Role userRole = new Role();
         userRole.setName("standard");
-        _roleRepository.save(userRole);
+        return _roleRepository.save(userRole);
     }
 
     @Override
-    public void save(Role role)
+    public Role save(Role role)
     {
-        _roleRepository.save(role);
+        return _roleRepository.save(role);
     }
 }
