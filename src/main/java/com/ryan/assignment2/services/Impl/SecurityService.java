@@ -22,12 +22,20 @@ public class SecurityService implements ISecurityService
     @Autowired
     private UserDetailsService _userDetailsService;
 
+    public SecurityService(AuthenticationManager authenticationManager, UserDetailsService userDetailsService) {
+        _authenticationManager = authenticationManager;
+        _userDetailsService = userDetailsService;
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
     @Override
-    public String findLoggedInUsername() {
+    public String findLoggedInUsername()
+    {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+
+        if (!(authentication instanceof AnonymousAuthenticationToken))
+        {
             return authentication.getName();
         }
 
