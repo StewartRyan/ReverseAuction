@@ -21,13 +21,17 @@ import java.util.Set;
 public class UserInfo implements UserDetailsService
 {
     @Autowired
-    private IMemberRepository _userRepository;
+    private IMemberRepository _memberRepository;
+
+    public UserInfo(IMemberRepository userRepository) {
+        _memberRepository = userRepository;
+    }
 
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username)
     {
 
-        Member member = _userRepository.findByEmail(username);
+        Member member = _memberRepository.findByEmail(username);
         if (member == null)
             throw new UsernameNotFoundException(username);
 
