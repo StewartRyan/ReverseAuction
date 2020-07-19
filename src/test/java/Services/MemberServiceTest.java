@@ -1,33 +1,24 @@
 package Services;
 
-import com.ryan.assignment2.domain.entities.Bid;
-import com.ryan.assignment2.domain.entities.Job;
 import com.ryan.assignment2.domain.entities.Member;
 import com.ryan.assignment2.domain.entities.Role;
-import com.ryan.assignment2.domain.models.BidDetails;
 import com.ryan.assignment2.domain.models.MemberDetails;
-import com.ryan.assignment2.repositories.IBidRepository;
 import com.ryan.assignment2.repositories.IMemberRepository;
 import com.ryan.assignment2.repositories.IRoleRepository;
-import com.ryan.assignment2.services.Impl.BidService;
 import com.ryan.assignment2.services.Impl.MemberService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Matchers;
+
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.internal.matchers.Any;
+
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

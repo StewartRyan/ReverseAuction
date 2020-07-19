@@ -1,19 +1,16 @@
 package Services;
 
-import com.ryan.assignment2.domain.entities.Bid;
 import com.ryan.assignment2.domain.entities.Job;
 import com.ryan.assignment2.domain.entities.Member;
 import com.ryan.assignment2.domain.models.BidDetails;
 import com.ryan.assignment2.domain.models.JobDetails;
 import com.ryan.assignment2.repositories.IJobRepository;
-import com.ryan.assignment2.services.Impl.BidService;
 import com.ryan.assignment2.services.Impl.JobService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
